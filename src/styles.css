@@ -1,0 +1,2324 @@
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap");
+
+/* =========================================
+   GLOBAL DESIGN TOKENS
+========================================= */
+
+:root {
+  --site-background: #FFF5E8;
+  --site-saffron: #FF9933;
+  --site-navy: #17243A;
+  --site-green: #138808;
+  --site-content-width: 1450px;
+  --site-page-gutter: clamp(22px, 5vw, 76px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--site-background);
+  color: var(--site-navy);
+  font-family: "DM Sans", sans-serif;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  width: 100%;
+}
+
+#root {
+  overflow-x: clip;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* =========================================
+   LEGACY TOP BAR
+========================================= */
+
+.top {
+  padding: 9px 6%;
+  display: flex;
+  justify-content: space-between;
+  background: #102a43;
+  color: #d8e8f3;
+  font-size: 12px;
+}
+
+.top span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.top svg {
+  width: 14px;
+}
+
+/* =========================================
+   COMMON BUTTON
+========================================= */
+
+.primary {
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 9px;
+  background: #0e7490;
+  color: white !important;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* =========================================
+   LEGACY HERO
+========================================= */
+
+.hero {
+  min-height: 590px;
+  padding: 80px var(--site-page-gutter);
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  background: linear-gradient(120deg, #eef8fa, #f8fafc 55%, #e4eff5);
+}
+
+.hero span,
+.section-title span,
+.page-hero span,
+.admin-title span {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #0e7490;
+}
+
+.hero h1,
+.page-hero h1,
+.section-title h2 {
+  font: 800 58px/1.1 "Manrope";
+  margin: 15px 0;
+}
+
+.hero p,
+.page-hero p,
+.section-title p {
+  max-width: 650px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #526b7c;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 27px;
+}
+
+.secondary {
+  padding: 12px 20px;
+  border: 1px solid #bdccd7;
+  border-radius: 9px;
+  background: white;
+  font-weight: 800;
+}
+
+/* =========================================
+   LEGACY HERO ART
+========================================= */
+
+.hero-art {
+  display: grid;
+  place-items: center;
+  width: 330px;
+  height: 330px;
+  margin: auto;
+  border-radius: 48% 52% 55% 45%;
+  background: #0e7490;
+  box-shadow: 30px 30px 0 #c5e5ea;
+}
+
+.hero-art svg {
+  width: 160px;
+  height: 160px;
+  color: white;
+}
+
+/* =========================================
+   SERVICES STRIP
+========================================= */
+
+.services-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  background: #102a43;
+  padding: 28px var(--site-page-gutter);
+  color: white;
+}
+
+.services-strip div {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 8px;
+  border-right: 1px solid #ffffff1f;
+  font-size: 12px;
+}
+
+.services-strip svg {
+  color: #55c2d0;
+}
+
+/* =========================================
+   COMMON LEGACY SECTIONS
+========================================= */
+
+.section {
+  padding: 85px var(--site-page-gutter);
+}
+
+.soft {
+  background: #edf5f7;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 38px;
+}
+
+.section-title h2 {
+  font-size: 39px;
+}
+
+/* =========================================
+   PROPERTY GRID
+========================================= */
+
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.property-card {
+  background: white;
+  border: 1px solid #dce6ec;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px #102a4310;
+}
+
+.property-image {
+  height: 210px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background: linear-gradient(145deg, #d8e9ef, #f1f6f8);
+}
+
+.property-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.property-image > svg {
+  width: 70px;
+  height: 70px;
+  color: #7ca5b4;
+}
+
+.property-image em {
+  position: absolute;
+  left: 13px;
+  top: 13px;
+  padding: 6px 10px;
+  background: #102a43;
+  color: white;
+  border-radius: 6px;
+  font-size: 11px;
+  font-style: normal;
+}
+
+.property-card > div:last-child {
+  padding: 18px;
+}
+
+.property-card small {
+  color: #6f8493;
+}
+
+.property-card h3 {
+  margin: 8px 0;
+}
+
+.price {
+  color: #0e7490;
+  font-size: 20px;
+}
+
+.property-card p {
+  font-size: 13px;
+  color: #607685;
+}
+
+.property-card .description {
+  line-height: 1.5;
+}
+
+.center-link {
+  display: block;
+  width: max-content;
+  margin: 35px auto 0;
+  color: #0e7490;
+  font-weight: 800;
+}
+
+/* =========================================
+   SERVICE GRID
+========================================= */
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.service-grid article {
+  background: white;
+  border: 1px solid #d8e4ea;
+  border-radius: 13px;
+  padding: 22px;
+}
+
+.service-grid svg {
+  color: #0e7490;
+}
+
+.service-grid h3 {
+  margin: 13px 0 7px;
+}
+
+.service-grid p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #607685;
+}
+
+.service-grid.large article img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 9px;
+}
+
+.service-grid article a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #0e7490;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+/* =========================================
+   CONTACT BAND
+========================================= */
+
+.contact-band {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 40px var(--site-page-gutter);
+  background: #0e7490;
+  color: white;
+}
+
+.contact-band > svg {
+  width: 45px;
+  height: 45px;
+}
+
+.contact-band div {
+  flex: 1;
+}
+
+.contact-band h2 {
+  margin: 0;
+}
+
+.contact-band a {
+  background: white;
+  color: #0e7490;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+/* =========================================
+   PAGE HERO
+========================================= */
+
+.page-hero {
+  padding: 75px var(--site-page-gutter);
+  text-align: center;
+  background: #eaf4f7;
+}
+
+.page-hero h1 {
+  font-size: 47px;
+}
+
+.page-hero p {
+  margin: auto;
+}
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 12px;
+  max-width: 800px;
+  margin: 0 auto 50px;
+}
+
+.filters input,
+.filters select,
+label input,
+label textarea,
+label select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cbd8e0;
+  border-radius: 8px;
+  background: white;
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  overflow: auto;
+  margin-bottom: 30px;
+}
+
+.chips button {
+  border: 1px solid #bfd0d9;
+  background: white;
+  border-radius: 20px;
+  padding: 9px 15px;
+  white-space: nowrap;
+}
+
+.chips button.active {
+  background: #0e7490;
+  color: white;
+}
+
+/* =========================================
+   ABOUT AND CONTACT GRID
+========================================= */
+
+.about-grid,
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 55px;
+}
+
+.about-grid > article > svg {
+  width: 55px;
+  height: 55px;
+  color: #0e7490;
+}
+
+.about-grid p {
+  line-height: 1.8;
+  color: #607685;
+}
+
+.value-grid > div {
+  padding: 18px;
+  border-bottom: 1px solid #d9e4e9;
+}
+
+.value-grid svg {
+  color: #0e7490;
+}
+
+.contact-info p {
+  display: flex;
+  gap: 13px;
+  padding: 12px 0;
+  border-bottom: 1px solid #dce6eb;
+}
+
+.contact-info svg {
+  color: #0e7490;
+}
+
+.contact-info span,
+.contact-info small {
+  display: block;
+}
+
+.contact-info small {
+  color: #718694;
+}
+
+/* =========================================
+   CONTACT FORM
+========================================= */
+
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding: 25px;
+  background: white;
+  border: 1px solid #dce5ea;
+  border-radius: 14px;
+}
+
+.contact-form label,
+.admin-form label,
+.content-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.contact-form .full {
+  grid-column: 1/-1;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+.status-message {
+  grid-column: 1/-1;
+  color: #0e7490;
+}
+
+/* =========================================
+   LOADING / STATE SCREEN
+========================================= */
+
+.state {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 30px;
+}
+
+/* =========================================
+   LEGACY FOOTER
+   Public footer is handled separately.
+========================================= */
+
+footer:not(.public-footer) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px var(--site-page-gutter);
+  border-top: 1px solid #dbe5eb;
+  background: white;
+}
+
+/* =========================================
+   LOGIN PAGE
+========================================= */
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #0b1e2c;
+}
+
+.login-page > div {
+  width: min(430px, 92vw);
+  padding: 38px;
+  border-radius: 18px;
+  background: white;
+  text-align: center;
+}
+
+.login-page > div > svg {
+  width: 60px;
+  height: 60px;
+  color: #0e7490;
+}
+
+.login-page small {
+  display: block;
+  color: #0e7490;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.login-page form {
+  display: grid;
+  gap: 14px;
+  text-align: left;
+  margin: 25px 0;
+}
+
+.login-page button,
+.admin-form > button,
+.content-form > button {
+  padding: 13px;
+  border: 0;
+  border-radius: 8px;
+  background: #0e7490;
+  color: white;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}
+
+.login-page a {
+  color: #0e7490;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.login-page .otp {
+  text-align: center;
+  font-size: 26px;
+  letter-spacing: 9px;
+}
+
+.error {
+  color: #b42318;
+}
+
+/* =========================================
+   ADMIN PANEL LAYOUT
+========================================= */
+
+.admin-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  background: #f1f5f8;
+}
+
+.admin-shell > aside {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  background: #102a43;
+  color: white;
+}
+
+.admin-brand {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  padding: 8px;
+}
+
+.admin-brand > svg {
+  width: 34px;
+  height: 34px;
+  color: #56c4d1;
+}
+
+.admin-brand span {
+  font-weight: 800;
+}
+
+.admin-brand small {
+  display: block;
+  color: #93b4c4;
+  font-size: 10px;
+}
+
+.admin-shell aside nav {
+  display: grid;
+  gap: 4px;
+  margin-top: 25px;
+}
+
+.admin-shell aside nav a {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 11px;
+  border-radius: 8px;
+  color: #c8d7e0;
+}
+
+.admin-shell aside nav a.active {
+  background: #17445a;
+  color: white;
+}
+
+.admin-shell aside nav svg,
+.admin-shell aside > button svg {
+  width: 17px;
+}
+
+.admin-shell aside > button {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: auto;
+  padding: 11px;
+  border: 1px solid #8a4c53;
+  background: #4b2730;
+  color: #ffadb2;
+  border-radius: 8px;
+}
+
+.admin-shell > main {
+  min-width: 0;
+}
+
+/* =========================================
+   ADMIN TOP BAR
+========================================= */
+
+.admin-top {
+  height: 70px !important;
+  position: static !important;
+  padding: 0 28px !important;
+  background: white !important;
+}
+
+.admin-top > button {
+  display: none;
+  border: 0;
+  background: none;
+}
+
+.admin-top div {
+  display: grid;
+}
+
+.admin-top small {
+  color: #768b99;
+}
+
+.admin-top a {
+  color: #0e7490;
+  font-weight: 800;
+}
+
+.admin-body {
+  padding: 30px;
+}
+
+.admin-title h1 {
+  margin: 7px 0;
+}
+
+.admin-title p {
+  color: #617888;
+}
+
+/* =========================================
+   ADMIN PANELS
+========================================= */
+
+.panel {
+  padding: 22px;
+  background: white;
+  border: 1px solid #d8e4ea;
+  border-radius: 13px;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 390px 1fr;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.admin-form,
+.content-form {
+  display: grid;
+  gap: 12px;
+  height: max-content;
+}
+
+.admin-form .check {
+  display: flex;
+  grid-template-columns: auto 1fr;
+}
+
+.check input {
+  width: auto;
+}
+
+.admin-form .upload {
+  padding: 18px;
+  border: 1px dashed #aec3ce;
+  text-align: center;
+}
+
+.upload input {
+  display: none;
+}
+
+.preview {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.admin-form .cancel {
+  background: #dce5ea;
+  color: #29485a;
+}
+
+/* =========================================
+   ORGANIZATION LIST
+========================================= */
+
+.org-list {
+  display: grid;
+  gap: 14px;
+}
+
+.org-list > article {
+  padding: 20px;
+  background: white;
+  border: 1px solid #d8e4ea;
+  border-radius: 13px;
+}
+
+.org-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.org-head > div {
+  flex: 1;
+}
+
+.org-head h3,
+.org-head p {
+  margin: 4px 0;
+}
+
+.org-head button,
+.item-admin-list article > button {
+  border: 0;
+  background: #eaf3f6;
+  color: #0e7490;
+  padding: 8px;
+  border-radius: 7px;
+}
+
+.org-head button.danger,
+.item-admin-list article > button.danger {
+  color: #c23838;
+  background: #fff0f0;
+}
+
+/* =========================================
+   FEATURE BOX
+========================================= */
+
+.feature-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 17px;
+  padding-top: 15px;
+  border-top: 1px solid #e0e8ed;
+}
+
+.feature-box > b {
+  grid-column: 1/-1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.feature-box label {
+  font-size: 13px;
+}
+
+/* =========================================
+   METRIC GRID
+========================================= */
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin: 25px 0;
+}
+
+.metric-grid > a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  background: white;
+  border: 1px solid #d7e3e9;
+  border-radius: 12px;
+}
+
+.metric-grid > a > svg {
+  color: #0e7490;
+}
+
+.metric-grid b {
+  font-size: 25px;
+  display: block;
+}
+
+.metric-grid a.locked {
+  opacity: 0.5;
+}
+
+/* =========================================
+   ACCESS LIST
+========================================= */
+
+.access-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.access-list span {
+  padding: 7px 11px;
+  border-radius: 17px;
+  font-size: 12px;
+}
+
+.access-list .on {
+  background: #daf5e7;
+  color: #146b40;
+}
+
+.access-list .off {
+  background: #fee5e5;
+  color: #a52c2c;
+}
+
+/* =========================================
+   ADMIN ITEM LIST
+========================================= */
+
+.item-admin-list article {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e0e8ed;
+}
+
+.item-admin-list img {
+  width: 85px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.item-admin-list article > div {
+  flex: 1;
+}
+
+.item-admin-list small {
+  display: block;
+  color: #6e8492;
+}
+
+.item-admin-list p {
+  font-size: 13px;
+  color: #5e7584;
+}
+
+/* =========================================
+   CONTENT FORM
+========================================= */
+
+.content-form {
+  max-width: 850px;
+  margin-top: 25px;
+}
+
+.content-form h2 {
+  margin: 15px 0 0;
+}
+
+/* =========================================
+   TABLES
+========================================= */
+
+.table-wrap {
+  overflow: auto;
+  margin-top: 25px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 13px;
+  border-bottom: 1px solid #dce5ea;
+}
+
+th {
+  font-size: 11px;
+  color: #6d8391;
+}
+
+td small {
+  display: block;
+  color: #738996;
+}
+
+td em {
+  font-style: normal;
+  padding: 5px 9px;
+  background: #dbf5e7;
+  color: #147044;
+  border-radius: 15px;
+  font-size: 11px;
+}
+
+/* =========================================
+   LEGACY RESPONSIVE LAYOUT
+========================================= */
+
+@media (max-width: 850px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 65px var(--site-page-gutter);
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .hero-art {
+    width: 210px;
+    height: 210px;
+    margin-top: 55px;
+  }
+
+  .hero-art svg {
+    width: 100px;
+  }
+
+  .services-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+
+  .property-grid,
+  .service-grid,
+  .about-grid,
+  .contact-grid,
+  .contact-form {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 65px var(--site-page-gutter);
+  }
+
+  .contact-form .full {
+    grid-column: auto;
+  }
+
+  .contact-band,
+  footer:not(.public-footer) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-shell {
+    display: block;
+  }
+
+  .admin-shell > aside {
+    display: none;
+    position: fixed;
+    z-index: 40;
+    width: 270px;
+  }
+
+  .admin-shell > aside.open {
+    display: flex;
+  }
+
+  .admin-top > button {
+    display: block;
+  }
+
+  .admin-body {
+    padding: 18px;
+  }
+
+  .admin-grid,
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-box {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================
+   PROPERTY LISTING AND DETAIL EXPERIENCE
+========================================= */
+
+.property-image {
+  height: auto;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.property-image img,
+.service-grid.large article img,
+.preview,
+.item-admin-list img {
+  object-fit: contain;
+  background: #edf3f5;
+}
+
+.property-image .media-count {
+  position: absolute;
+  right: 13px;
+  bottom: 13px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #fffffff0;
+  color: #17384a;
+  font-size: 11px;
+  font-weight: 800;
+  box-shadow: 0 3px 12px #102a4322;
+}
+
+.property-card .rate {
+  display: block;
+  margin-top: 4px;
+}
+
+.property-card .description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 39px;
+}
+
+.property-view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-top: 13px;
+  border-top: 1px solid #e2eaee;
+  color: #0e7490;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.property-view svg {
+  width: 16px;
+}
+
+.property-filters {
+  grid-template-columns: minmax(280px, 1fr) 170px 190px;
+  max-width: 950px;
+}
+
+/* =========================================
+   PROPERTY DETAIL HEADER
+========================================= */
+
+.property-detail-head {
+  padding: 34px var(--site-page-gutter) 22px;
+  background: white;
+  border-bottom: 1px solid #dce6ec;
+}
+
+.property-detail-head > a,
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #0e7490;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.property-detail-head > a svg,
+.back-link svg {
+  width: 17px;
+}
+
+.property-detail-head > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+
+.property-detail-head > div > div {
+  display: flex;
+  gap: 8px;
+}
+
+.property-detail-head span,
+.property-detail-head > div small {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #e5f5f7;
+  color: #0b6b7d;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.property-detail-head > div button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #cfdae1;
+  border-radius: 8px;
+  background: white;
+  padding: 9px 13px;
+  color: #365568;
+  font-weight: 700;
+}
+
+.property-detail-head > div button svg {
+  width: 17px;
+}
+
+.property-detail-head h1 {
+  font: 800 clamp(27px, 4vw, 43px)/1.15 "Manrope";
+  margin: 12px 0 8px;
+}
+
+.property-detail-head > p {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  color: #607685;
+}
+
+.property-detail-head > p svg {
+  width: 18px;
+  color: #0e7490;
+}
+
+/* =========================================
+   PROPERTY PRICE STRIP
+========================================= */
+
+.property-price-strip {
+  display: grid;
+  grid-template-columns: 1.25fr repeat(4, 1fr);
+  gap: 0;
+  padding: 0 var(--site-page-gutter);
+  background: #102a43;
+  color: white;
+}
+
+.property-price-strip > div {
+  min-height: 92px;
+  padding: 19px 22px;
+  border-right: 1px solid #ffffff20;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.property-price-strip > div:first-child {
+  display: grid;
+  gap: 1px;
+}
+
+.property-price-strip strong {
+  font: 800 24px "Manrope";
+  color: #77d4df;
+}
+
+.property-price-strip small {
+  color: #b9ced9;
+}
+
+.property-price-strip > div > svg {
+  width: 22px;
+  color: #55c2d0;
+}
+
+.property-price-strip > div > span {
+  display: grid;
+}
+
+.property-price-strip b {
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* =========================================
+   PROPERTY DETAIL LAYOUT
+========================================= */
+
+.property-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 24px;
+  padding: 34px var(--site-page-gutter) 80px;
+  align-items: start;
+}
+
+/* =========================================
+   PROPERTY GALLERY
+========================================= */
+
+.property-gallery {
+  position: relative;
+  padding: 12px;
+  background: white;
+  border: 1px solid #dce6ec;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.gallery-main {
+  position: relative;
+  width: 100%;
+  height: clamp(360px, 50vw, 620px);
+  padding: 0;
+  border: 0;
+  border-radius: 11px;
+  background: #eaf1f4;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.gallery-main > svg {
+  width: 100px;
+  height: 100px;
+  color: #83a7b5;
+}
+
+.gallery-main > span {
+  position: absolute;
+  right: 13px;
+  bottom: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border-radius: 7px;
+  background: #102a43e6;
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.gallery-main > span svg {
+  width: 16px;
+}
+
+.gallery-arrow {
+  position: absolute;
+  top: calc(50% - 42px);
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #fffffff0;
+  color: #17384a;
+  box-shadow: 0 5px 18px #102a4333;
+}
+
+.gallery-arrow.previous {
+  left: 25px;
+}
+
+.gallery-arrow.next {
+  right: 25px;
+}
+
+.gallery-thumbs {
+  display: flex;
+  gap: 9px;
+  overflow-x: auto;
+  padding: 11px 1px 1px;
+}
+
+.gallery-thumbs button {
+  position: relative;
+  flex: 0 0 106px;
+  height: 78px;
+  padding: 3px;
+  border: 2px solid transparent;
+  border-radius: 9px;
+  background: #edf3f5;
+  overflow: hidden;
+}
+
+.gallery-thumbs button.active {
+  border-color: #0e7490;
+}
+
+.gallery-thumbs img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.gallery-thumbs span {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  padding: 3px 5px;
+  border-radius: 4px;
+  background: #0e7490;
+  color: white;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+/* =========================================
+   PROPERTY CONTENT SECTIONS
+========================================= */
+
+.property-section {
+  margin-top: 20px;
+  padding: 25px;
+  background: white;
+  border: 1px solid #dce6ec;
+  border-radius: 14px;
+}
+
+.property-section h2 {
+  margin: 0 0 20px;
+  font: 800 21px "Manrope";
+}
+
+/* =========================================
+   PROPERTY SPECIFICATIONS
+========================================= */
+
+.property-specs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.property-specs > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px;
+  border-radius: 9px;
+  background: #f2f7f9;
+}
+
+.property-specs svg {
+  width: 20px;
+  color: #0e8aa4;
+}
+
+.property-specs span {
+  display: grid;
+}
+
+.property-specs small {
+  font-size: 10px;
+  color: #748997;
+}
+
+.property-specs b {
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+/* =========================================
+   MORE DETAILS
+========================================= */
+
+.more-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.more-details > div {
+  display: grid;
+  grid-template-columns: 145px 1fr;
+  gap: 10px;
+  padding: 13px 0;
+  border-bottom: 1px solid #e3eaee;
+  font-size: 13px;
+}
+
+.more-details > div:nth-child(odd) {
+  margin-right: 22px;
+}
+
+.more-details span {
+  color: #728795;
+}
+
+.more-details b {
+  color: #17384a;
+}
+
+.long-copy {
+  white-space: pre-line;
+  line-height: 1.8;
+  color: #526b7c;
+}
+
+.read-more {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: #0e7490;
+  font-weight: 800;
+}
+
+/* =========================================
+   AMENITIES
+========================================= */
+
+.amenity-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 11px;
+}
+
+.amenity-list span {
+  padding: 11px 13px;
+  border-radius: 8px;
+  background: #eef8f5;
+  color: #24604c;
+  font-size: 13px;
+}
+
+.project-about > small {
+  color: #0e7490;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.project-about h2 {
+  margin: 6px 0;
+}
+
+.project-about > b {
+  color: #617888;
+}
+
+/* =========================================
+   PROPERTY VIDEOS
+========================================= */
+
+.property-videos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.property-videos article {
+  overflow: hidden;
+  border: 1px solid #d9e3e8;
+  border-radius: 11px;
+}
+
+.property-videos video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: contain;
+  background: #07131a;
+  display: block;
+}
+
+.property-videos article > div {
+  display: flex;
+  gap: 9px;
+  padding: 12px;
+}
+
+.property-videos svg {
+  width: 19px;
+  color: #0e7490;
+}
+
+.property-videos span {
+  display: grid;
+}
+
+.property-videos small {
+  color: #738895;
+}
+
+/* =========================================
+   PROPERTY DOCUMENTS
+========================================= */
+
+.property-documents {
+  display: grid;
+  gap: 9px;
+}
+
+.property-documents a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #dbe5ea;
+  border-radius: 9px;
+}
+
+.property-documents a > svg:first-child {
+  color: #0e7490;
+}
+
+.property-documents a > span {
+  display: grid;
+  flex: 1;
+}
+
+.property-documents small {
+  color: #718694;
+}
+
+.property-documents a > svg:last-child {
+  width: 18px;
+}
+
+/* =========================================
+   PROPERTY ENQUIRY CARD
+========================================= */
+
+.property-enquiry-card {
+  position: sticky;
+  top: 100px;
+  padding: 24px;
+  border-radius: 14px;
+  background: white;
+  border: 1px solid #d5e1e7;
+  box-shadow: 0 13px 35px #102a4314;
+  display: grid;
+  gap: 13px;
+}
+
+.property-enquiry-card > small {
+  color: #6c8290;
+}
+
+.property-enquiry-card > strong {
+  font: 800 28px "Manrope";
+  color: #0e7490;
+}
+
+.property-enquiry-card > span {
+  font-size: 12px;
+  color: #6d8391;
+  margin-top: -8px;
+}
+
+.property-enquiry-card p {
+  display: flex;
+  gap: 7px;
+  color: #607685;
+}
+
+.property-enquiry-card p svg {
+  width: 18px;
+}
+
+.listing-reference {
+  padding: 11px;
+  border-radius: 8px;
+  background: #f1f6f8;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.property-enquiry-card .primary,
+.property-enquiry-card .secondary {
+  justify-content: center;
+  text-align: center;
+}
+
+/* =========================================
+   MAP LINK
+========================================= */
+
+.map-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #0e7490;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.map-link svg {
+  width: 16px;
+}
+
+/* =========================================
+   PROPERTY IMAGE LIGHTBOX
+========================================= */
+
+.property-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: #061016f2;
+  padding: 35px;
+}
+
+.property-lightbox img {
+  max-width: calc(100vw - 120px);
+  max-height: calc(100vh - 90px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.property-lightbox button {
+  position: absolute;
+  z-index: 2;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #ffffffdd;
+  color: #102a43;
+}
+
+.lightbox-close {
+  right: 24px;
+  top: 24px;
+}
+
+.lightbox-prev {
+  left: 24px;
+  top: 50%;
+}
+
+.lightbox-next {
+  right: 24px;
+  top: 50%;
+}
+
+.property-lightbox > span {
+  position: absolute;
+  bottom: 16px;
+  color: white;
+  font-weight: 800;
+}
+
+/* =========================================
+   PROPERTY ADMIN / MEDIA CRUD
+========================================= */
+
+.property-admin-grid {
+  grid-template-columns: minmax(560px, 1fr) minmax(360px, 0.65fr);
+}
+
+.property-form fieldset {
+  border: 1px solid #dce6eb;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.property-form legend {
+  padding: 0 8px;
+  color: #0e7490;
+  font-weight: 800;
+}
+
+.property-form-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.property-form-fields label.full {
+  grid-column: 1/-1;
+}
+
+.property-form textarea {
+  min-height: 115px;
+}
+
+.form-checks,
+.media-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.manage-media {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+  color: #0e7490;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.manage-media svg {
+  width: 16px;
+}
+
+/* =========================================
+   PROPERTY MEDIA UPLOAD
+========================================= */
+
+.property-media-upload {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 15px;
+  margin-top: 24px;
+}
+
+.property-media-upload .media-drop,
+.property-media-upload .selected-files,
+.property-media-upload > button {
+  grid-column: 1/-1;
+}
+
+.media-drop {
+  min-height: 150px;
+  border: 2px dashed #acc5d0;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 6px;
+  text-align: center;
+  background: #f4fafb;
+  color: #31596c;
+  cursor: pointer;
+}
+
+.media-drop > svg {
+  width: 34px;
+  height: 34px;
+  color: #0e7490;
+}
+
+.media-drop small {
+  color: #738895;
+}
+
+.media-drop input {
+  display: none;
+}
+
+.selected-files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.selected-files span {
+  padding: 7px 9px;
+  border-radius: 7px;
+  background: #edf4f6;
+  font-size: 12px;
+}
+
+.selected-files small {
+  color: #6f8492;
+}
+
+.property-media-upload > button,
+.media-actions button {
+  border: 0;
+  border-radius: 8px;
+  background: #0e7490;
+  color: white;
+  padding: 12px;
+  font-weight: 800;
+}
+
+.property-media-upload > button:disabled {
+  opacity: 0.5;
+}
+
+.media-status {
+  margin-top: 14px;
+}
+
+/* =========================================
+   PROPERTY MEDIA GRID
+========================================= */
+
+.property-media-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.property-media-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.media-admin-preview {
+  position: relative;
+  height: 280px;
+  display: grid;
+  place-items: center;
+  background: #eaf1f4;
+}
+
+.media-admin-preview > img,
+.media-admin-preview > video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.file-preview {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 30px;
+  color: #4f6878;
+}
+
+.file-preview svg {
+  width: 65px;
+  height: 65px;
+  color: #0e7490;
+}
+
+/* =========================================
+   MEDIA BADGES
+========================================= */
+
+.cover-badge,
+.type-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 9px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.cover-badge {
+  left: 10px;
+  top: 10px;
+  background: #f8cc4b;
+  color: #443300;
+}
+
+.type-badge {
+  right: 10px;
+  top: 10px;
+  background: #102a43e8;
+  color: white;
+  text-transform: capitalize;
+}
+
+.cover-badge svg,
+.type-badge svg {
+  width: 13px;
+}
+
+/* =========================================
+   MEDIA EDIT FIELDS
+========================================= */
+
+.media-edit-fields {
+  display: grid;
+  gap: 10px;
+  padding: 17px;
+}
+
+.media-edit-fields label {
+  display: grid;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.media-edit-fields input,
+.media-edit-fields textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbd8e0;
+  border-radius: 7px;
+}
+
+.media-edit-fields textarea {
+  min-height: 70px;
+}
+
+.media-edit-fields > small {
+  color: #708592;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   MEDIA ACTIONS
+========================================= */
+
+.media-actions {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.media-actions button,
+.media-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 9px 11px;
+  font-size: 12px;
+}
+
+.media-actions button svg,
+.media-actions a svg {
+  width: 15px;
+}
+
+.media-actions a {
+  border: 1px solid #cbd8e0;
+  border-radius: 8px;
+}
+
+.media-actions .danger {
+  background: #fff0f0;
+  color: #b42318;
+}
+
+/* =========================================
+   PROPERTY TABLET RESPONSIVE
+========================================= */
+
+@media (max-width: 1150px) {
+  .property-price-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .property-price-strip > div:first-child {
+    grid-column: 1/-1;
+  }
+
+  .property-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .property-enquiry-card {
+    position: static;
+  }
+
+  .property-admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .property-media-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================
+   PROPERTY MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 850px) {
+  .property-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .property-detail-head {
+    padding: 25px var(--site-page-gutter) 18px;
+  }
+
+  .property-detail-head > div {
+    align-items: flex-start;
+  }
+
+  .property-price-strip {
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+  }
+
+  .property-price-strip > div:first-child {
+    grid-column: 1/-1;
+  }
+
+  .property-price-strip > div {
+    min-height: 80px;
+    padding: 15px;
+  }
+
+  .property-detail-layout {
+    padding: 20px var(--site-page-gutter) 55px;
+  }
+
+  .gallery-main {
+    height: 330px;
+  }
+
+  .gallery-arrow {
+    top: 155px;
+  }
+
+  .gallery-thumbs button {
+    flex-basis: 88px;
+    height: 67px;
+  }
+
+  .property-specs,
+  .amenity-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .more-details {
+    grid-template-columns: 1fr;
+  }
+
+  .more-details > div:nth-child(odd) {
+    margin-right: 0;
+  }
+
+  .property-videos {
+    grid-template-columns: 1fr;
+  }
+
+  .property-form-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .property-form-fields label.full {
+    grid-column: auto;
+  }
+
+  .property-media-upload {
+    grid-template-columns: 1fr;
+  }
+
+  .property-lightbox {
+    padding: 15px;
+  }
+
+  .property-lightbox img {
+    max-width: 100%;
+    max-height: calc(100vh - 110px);
+  }
+
+  .lightbox-prev {
+    left: 10px;
+  }
+
+  .lightbox-next {
+    right: 10px;
+  }
+
+  .lightbox-close {
+    right: 10px;
+    top: 10px;
+  }
+}
+
+/* =========================================
+   SMALL PROPERTY MOBILE
+========================================= */
+
+@media (max-width: 520px) {
+  .property-detail-head > div > div {
+    flex-wrap: wrap;
+  }
+
+  .property-price-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .property-price-strip > div:first-child {
+    grid-column: auto;
+  }
+
+  .gallery-main {
+    height: 280px;
+  }
+
+  .gallery-arrow {
+    top: 130px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .gallery-arrow.previous {
+    left: 18px;
+  }
+
+  .gallery-arrow.next {
+    right: 18px;
+  }
+
+  .property-section {
+    padding: 19px;
+  }
+
+  .property-specs,
+  .amenity-list {
+    grid-template-columns: 1fr;
+  }
+
+  .more-details > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .property-media-card {
+    min-width: 0;
+  }
+
+  .media-admin-preview {
+    height: 230px;
+  }
+}
+
+/* =========================================
+   ADMIN SIDEBAR SCROLL
+========================================= */
+
+.admin-shell > aside nav {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  align-content: start;
+  scrollbar-width: thin;
+}
+
+.admin-shell > aside nav a {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.admin-shell > aside nav a svg {
+  flex: 0 0 17px;
+}
+
+.admin-shell > aside > button {
+  flex-shrink: 0;
+  margin-top: 12px;
+}
+
+/* =========================================
+   PUBLIC LAYOUT COMPONENTS
+   Navbar and hero styles are maintained
+   in their respective component CSS files.
+========================================= */
+
+/* Public navbar styling is maintained in components/PublicLayout.css. */
+
+/* Politician hero styling is maintained in components/hero-section.css. */
+
+/* =========================================
+   SHARED PUBLIC PAGE ALIGNMENT
+
+   Common maximum width and horizontal
+   margins for sections as we update them.
+========================================= */
+
+.site-container {
+  width: min(
+    calc(100% - (2 * var(--site-page-gutter))),
+    var(--site-content-width)
+  );
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================================
+   PUBLIC FOOTER LAYOUT PROTECTION
+========================================= */
+
+footer.public-footer {
+  display: block;
+  width: 100%;
+}
+
+/* =========================================
+   PREVENT HORIZONTAL OVERFLOW
+========================================= */
+
+#root,
+main {
+  min-width: 0;
+  max-width: 100%;
+}

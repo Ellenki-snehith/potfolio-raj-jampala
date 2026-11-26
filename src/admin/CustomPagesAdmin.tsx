@@ -1,0 +1,79 @@
+import {FieldImageEditor} from './FieldImageEditor';
+import {useEffect,useState,type FormEvent} from 'react';
+import {Link,useParams} from 'react-router-dom';
+import {ImagePlus,Pencil,Trash2,Plus,ArrowUp,ArrowDown} from 'lucide-react';
+import './page-builder.css';
+import {customPageTypes,customPageEntries,createCustomPageEntry,updateCustomPageEntry,deleteCustomPageEntry,uploadImage,mediaUrl} from '../api';
+const fields:[string,string,boolean][]=[
+ ['name','Service / project title *',false],['slug','Public URL slug (leave blank to generate)',false],['location','Location / service area',false],['price_label','Price / estimated budget',false],['completed_projects','Completed projects',false],['years_experience','Years of experience',false],['short_description','Listing card summary',true],['description','Overview / description',true],['scope_of_work','Scope of services',true],['materials','Materials & workmanship',true],['process','Work process',true],['highlights','Key highlights',true],['custom_details','Completed work / portfolio story',true],['call_to_action','Inquiry button label',false],['seo_title','SEO title',false],['seo_description','SEO description',true]
+];
+const newForm=():Record<string,any>=>({name:'',slug:'',category:'',location:'',price_label:'',completed_projects:'',years_experience:'',short_description:'',description:'',scope_of_work:'',materials:'',process:'',highlights:'',custom_details:'',call_to_action:'Request a callback',seo_title:'',seo_description:'',image_url:'',published:false,featured:false,custom_fields:{},custom_field_media:{},additional_fields:[]});
+const makeField=()=>({key:`f_${Date.now().toString(36)}_${Math.random().toString(36).slice(2,8)}`,label:'',type:'text',value:'',options:[],show_on_card:false,show_on_detail:true});
+export function CustomPagesAdmin(){
+ const {typeSlug}=useParams<{typeSlug:string}>();
+ const [types,setTypes]=useState<any[]>([]),[typeId,setTypeId]=useState(''),[items,setItems]=useState<any[]>([]),[form,setForm]=useState<any>(newForm()),[editing,setEditing]=useState(''),[busy,setBusy]=useState(false),[message,setMessage]=useState('');
+ const [loading,setLoading]=useState(true),[loadError,setLoadError]=useState(''),[refreshKey,setRefreshKey]=useState(0);
+ // Load BOTH resources before deciding whether a service exists. Previously a failed
+ // request was shown as "No services assigned" and its error could be erased.
+ useEffect(()=>{
+  let active=true;
+  setLoading(true);setLoadError('');
+  Promise.all([customPageTypes(),customPageEntries()]).then(([loadedTypes,loadedItems]:any[])=>{
+   if(!active)return;
+   if(!Array.isArray(loadedTypes)||!Array.isArray(loadedItems))throw new Error('Custom Service API returned an unexpected response.');
+   setTypes(loadedTypes);setItems(loadedItems);
+   setTypeId((id:string)=>loadedTypes.some((r:any)=>r.id===id)?id:loadedTypes[0]?.id||'');
+  }).catch(error=>{if(active)setLoadError(error?.message||'Unable to load Custom Services.');})
+    .finally(()=>{if(active)setLoading(false)});
+  return ()=>{active=false};
+ },[refreshKey]);
+ const loadItems=async()=>{const rows:any=await customPageEntries();if(!Array.isArray(rows))throw new Error('Invalid service-list response');setItems(rows)};
+ // A route such as /control/services/solar-installation selects one service.
+ // Keep /control/custom-pages working for bookmarked administration pages.
+ const activeType=typeSlug?types.find(t=>String(t.slug||'').toLowerCase()===typeSlug.toLowerCase()):types.find(t=>t.id===typeId);
+ const selectedTypeId=activeType?.id||'';
+ useEffect(()=>{setForm(newForm());setEditing('');},[selectedTypeId]);
+ const set=(key:string,value:any)=>setForm((old:any)=>({...old,[key]:value}));
+ const setExtra=(key:string,value:any)=>setForm((old:any)=>({...old,custom_fields:{...old.custom_fields,[key]:value}}));
+ const setFieldImage=(key:string,change:any)=>setForm((old:any)=>({...old,custom_field_media:{...old.custom_field_media,[key]:{...(old.custom_field_media?.[key]||{}),...change}}}));
+ const editField=(index:number,patch:any)=>setForm((old:any)=>({...old,additional_fields:(old.additional_fields||[]).map((f:any,i:number)=>i===index?{...f,...patch}:f)}));
+ const removeField=(index:number)=>setForm((old:any)=>({...old,additional_fields:(old.additional_fields||[]).filter((_:any,i:number)=>i!==index)}));
+ const moveField=(index:number,shift:number)=>setForm((old:any)=>{const rows=[...(old.additional_fields||[])],next=index+shift;if(next<0||next>=rows.length)return old;[rows[index],rows[next]]=[rows[next],rows[index]];return {...old,additional_fields:rows}});
+ const addField=()=>setForm((old:any)=>({...old,additional_fields:[...(old.additional_fields||[]),makeField()]}));
+ const save=async(e:FormEvent)=>{e.preventDefault();setBusy(true);setMessage('');try{
+  const payload={...Object.fromEntries(Object.entries(form).filter(([key])=>key in newForm())),page_type_id:selectedTypeId};
+  if((payload.additional_fields||[]).some((f:any)=>!String(f.label||'').trim()))throw new Error('Please enter a label for every additional field, or remove incomplete fields.');
+  if(editing)await updateCustomPageEntry(editing,payload);else await createCustomPageEntry(payload);
+  setForm(newForm());setEditing('');setMessage('Listing saved. Add gallery images, videos and documents through Open gallery: photos & videos.');await loadItems();
+ }catch(error:any){setMessage(error.message)}finally{setBusy(false)}};
+ const upload=async(file?:File)=>{if(!file)return;setBusy(true);try{const data=new FormData();data.append('file',file);const result:any=await uploadImage(data);set('image_url',result.url);setMessage('Cover image uploaded. Save the page to apply it.')}catch(error:any){setMessage(error.message)}finally{setBusy(false)}};
+ return <><div className="admin-title"><span>ORGANIZATION ADMIN · SERVICES</span><h1>{typeSlug?(activeType?.name||'Service not available'):'Service listings & detail pages'}</h1><p>{typeSlug?'Add and manage '+(activeType?.name||'service')+' projects, details, photos, videos and inquiries. Published listings appear on your website.':'Manage a service category granted by Master Admin. Each published listing has its own details page and inquiry form.'}</p></div>
+ {loading?<div className="panel" style={{padding:24}} role="status">Loading assigned Custom Services and saved listings…</div>
+ :loadError?<div className="panel" style={{padding:24}} role="alert"><strong>Custom Services could not load.</strong><p>{loadError}</p><p>Check that the Organization Admin token is valid and the API is pointing at your PostgreSQL-backed FastAPI server.</p><button type="button" onClick={()=>setRefreshKey(x=>x+1)}>Retry loading services</button></div>
+ :!types.length?<div className="panel" style={{padding:24}}>No services are assigned to your organization yet. Ask Master Admin to enable services and grant access.</div>
+ :typeSlug&&!activeType?<div className="panel" style={{padding:24}} role="alert">The service "{typeSlug}" is not assigned to this organization or is inactive. <Link to="/control/custom-pages">View assigned services</Link></div>
+ :<div className="admin-grid"><form className="panel admin-form property-form" onSubmit={save}><h2>{editing?'Edit '+(activeType?.name||'service'):'Add '+(activeType?.name||'service')}</h2>
+ {!typeSlug&&<label>Service category<select value={selectedTypeId} onChange={e=>setTypeId(e.target.value)}>{types.map(t=><option key={t.id} value={t.id}>{t.name}</option>)}</select></label>}
+ {activeType?.category_options?.length?<label>Category *<select required value={form.category||''} onChange={e=>set('category',e.target.value)}><option value="">Choose category</option>{activeType.category_options.map((name:string)=><option key={name} value={name}>{name}</option>)}</select></label>:<label>Category<input value={form.category||''} placeholder="Residential, commercial…" onChange={e=>set('category',e.target.value)}/></label>}
+ <fieldset><legend>{activeType?.name||'Page'} standard fields</legend><div className="property-form-fields">{fields.map(([key,label,multi])=><label key={key} className={multi?'full':''}>{label}{multi?<textarea value={form[key]||''} onChange={e=>set(key,e.target.value)}/>:<input required={key==='name'} value={form[key]||''} onChange={e=>set(key,e.target.value)}/>}</label>)}</div></fieldset>
+ {!!activeType?.field_definitions?.length&&<fieldset><legend>Custom fields set by Master Admin</legend><div className="property-form-fields">{activeType.field_definitions.map((field:any)=>{const value=form.custom_fields?.[field.key];return <div key={field.key} className={field.type==='textarea'?'full':''}><label>{field.label}{field.required?' *':''}
+ {field.type==='textarea'?<textarea required={field.required} value={value??''} onChange={e=>setExtra(field.key,e.target.value)}/>:field.type==='select'?<select required={field.required} value={value??''} onChange={e=>setExtra(field.key,e.target.value)}><option value="">Select {field.label}</option>{field.options.map((option:string)=><option key={option} value={option}>{option}</option>)}</select>:field.type==='checkbox'?<input type="checkbox" checked={!!value} onChange={e=>setExtra(field.key,e.target.checked)}/>:<input required={field.required} type={field.type==='number'?'number':field.type==='date'?'date':'text'} value={value??''} onChange={e=>setExtra(field.key,field.type==='number'?(e.target.value===''?'':Number(e.target.value)):e.target.value)}/>}</label><FieldImageEditor value={form.custom_field_media?.[field.key]||{}} onChange={change=>setFieldImage(field.key,change)}/></div>})}</div></fieldset>}
+ <fieldset className="custom-entry-builder"><legend>Your own custom detail fields</legend>
+ <p className="builder-help">Add as many as 30 fields to this particular listing. Each field gets its own label and value and appears automatically on the public detail page. Use a long-text field for descriptions, or a dropdown for predefined options.</p>
+ {(form.additional_fields||[]).map((field:any,index:number)=><div className="builder-row custom-entry-field" key={field.key}>
+ <div className="builder-field-heading"><b>Custom field {index+1}</b><div className="builder-actions"><button type="button" className="cancel" aria-label="Move field up" disabled={index===0} onClick={()=>moveField(index,-1)}><ArrowUp size={16}/></button><button type="button" className="cancel" aria-label="Move field down" disabled={index===(form.additional_fields||[]).length-1} onClick={()=>moveField(index,1)}><ArrowDown size={16}/></button><button type="button" className="danger" aria-label="Remove custom field" onClick={()=>removeField(index)}><Trash2 size={16}/></button></div></div>
+ <div className="builder-field-grid"><label>Field label *<input required maxLength={100} placeholder="e.g. Warranty, Lift capacity, Materials" value={field.label||''} onChange={e=>editField(index,{label:e.target.value})}/></label>
+ <label>Field type<select value={field.type} onChange={e=>editField(index,{type:e.target.value,value:e.target.value==='checkbox'?false:'',options:e.target.value==='select'?(field.options?.length?field.options:['Option 1']):[]})}><option value="text">Short text</option><option value="textarea">Long description</option><option value="number">Number</option><option value="select">Dropdown</option><option value="date">Date</option><option value="checkbox">Yes / No</option></select></label></div>
+ {field.type==='select'&&<label>Dropdown choices (one per line)<textarea rows={3} key={`options-${field.key}`} defaultValue={(field.options||[]).join('\n')} onBlur={e=>{const options=e.target.value.split('\n').map((x:string)=>x.trim()).filter(Boolean);editField(index,{options,value:options.includes(field.value)?field.value:''})}} placeholder="Standard\nPremium\nLuxury"/></label>}
+ <label>Value / information to display
+ {field.type==='textarea'?<textarea rows={4} maxLength={5000} placeholder="Write details to show on this page" value={field.value??''} onChange={e=>editField(index,{value:e.target.value})}/>:field.type==='select'?<select value={field.value??''} onChange={e=>editField(index,{value:e.target.value})}><option value="">Select value</option>{(field.options||[]).map((option:string)=><option key={option} value={option}>{option}</option>)}</select>:field.type==='checkbox'?<span className="builder-inline-check"><input type="checkbox" checked={!!field.value} onChange={e=>editField(index,{value:e.target.checked})}/> Yes / enabled</span>:<input type={field.type==='date'?'date':field.type==='number'?'number':'text'} maxLength={field.type==='number'?undefined:500} value={field.value??''} onChange={e=>editField(index,{value:field.type==='number'?(e.target.value===''?'':Number(e.target.value)):e.target.value})} placeholder="Enter value"/>}</label>
+ <FieldImageEditor value={field} onChange={change=>editField(index,change)}/>
+  <div className="builder-checks"><label className="check"><input type="checkbox" checked={field.show_on_detail!==false} onChange={e=>editField(index,{show_on_detail:e.target.checked})}/> Show on details page</label><label className="check"><input type="checkbox" checked={!!field.show_on_card} onChange={e=>editField(index,{show_on_card:e.target.checked})}/> Show on listing card</label></div></div>)}
+ <button type="button" className="custom-add-field" onClick={addField} disabled={(form.additional_fields||[]).length>=30}><Plus size={18}/> Add custom field</button>
+ <p className="builder-help">Changes save with the listing when you click {editing?'Update listing':'Create listing'}. Existing gallery media and inquiries are unaffected.</p>
+ </fieldset>
+ <label className="upload"><ImagePlus/> Upload cover image<input type="file" accept="image/*" onChange={e=>upload(e.target.files?.[0])}/></label>{form.image_url&&<img className="preview" src={mediaUrl(form.image_url)} alt="Cover preview"/>}
+ <div className="form-checks"><label className="check"><input type="checkbox" checked={Boolean(form.published)} onChange={e=>set('published',e.target.checked)}/> Published on website</label><label className="check"><input type="checkbox" checked={Boolean(form.featured)} onChange={e=>set('featured',e.target.checked)}/> Featured on home page</label></div>
+ <button type="submit" disabled={busy||!selectedTypeId}>{busy?'Saving…':editing?'Update listing':'Create listing'}</button>{editing&&<button className="cancel" type="button" onClick={()=>{setForm(newForm());setEditing('')}}>Cancel editing</button>}{message&&<p className="status-message" role="status">{message}</p>}</form>
+ <section className="panel item-admin-list"><h2>{activeType?.name} listings</h2>{items.filter(x=>x.page_type_id===selectedTypeId).map(item=><article key={item.id}>{item.image_url&&<img src={mediaUrl(item.image_url)} alt=""/>}<div><b>{item.name}</b><small>{item.category||activeType?.name} · {item.published?'Published':'Draft'}</small><p>{item.short_description||item.description}</p><Link className="manage-media" to={`/control/custom-pages/${item.id}/media`}><ImagePlus/> Open gallery: photos & videos</Link><p><a target="_blank" rel="noreferrer" href={`/services/${activeType?.slug}/${item.slug}`}>View public detail page ↗</a></p></div><button type="button" aria-label="Edit" onClick={()=>{setEditing(item.id);setForm({...newForm(),...item,custom_fields:item.custom_fields||{},custom_field_media:item.custom_field_media||{},additional_fields:item.additional_fields||[]});window.scrollTo({top:0,behavior:'smooth'})}}><Pencil/></button><button type="button" className="danger" aria-label="Delete" onClick={async()=>{if(confirm('Delete this page and gallery? Existing inquiry history will be retained.')){try{await deleteCustomPageEntry(item.id);await loadItems()}catch(error:any){setMessage(error.message)}}}}><Trash2/></button></article>)}{!items.some(x=>x.page_type_id===selectedTypeId)&&<p>No pages created for this type yet.</p>}</section></div>}</>;
+}

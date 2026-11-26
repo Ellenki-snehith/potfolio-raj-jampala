@@ -1,0 +1,336 @@
+/* =========================================================
+   SHARED WEBSITE ALIGNMENT
+========================================================= */
+
+:root {
+  --site-content-width: 1450px;
+  --site-page-gutter: clamp(22px, 5vw, 76px);
+}
+
+/* =========================================================
+   POLITICIAN HERO SECTION
+========================================================= */
+
+.politician-hero {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  min-height: 680px;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  /* Vertical padding only; horizontal alignment is on content */
+  padding: 80px 0;
+
+  background: #17243a;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HERO IMAGE
+========================================================= */
+
+.politician-hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: 68% center;
+}
+
+/* =========================================================
+   DARK OVERLAY
+========================================================= */
+
+.politician-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background: linear-gradient(
+    90deg,
+    rgba(15, 27, 45, 0.94) 0%,
+    rgba(15, 27, 45, 0.82) 35%,
+    rgba(15, 27, 45, 0.48) 58%,
+    rgba(15, 27, 45, 0.08) 100%
+  );
+}
+
+/* =========================================================
+   HERO TEXT CONTENT
+   SAME LEFT/RIGHT ALIGNMENT AS OTHER WEBSITE PAGES
+========================================================= */
+
+.politician-hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: min(
+    calc(
+      100% -
+      var(--site-page-gutter) -
+      var(--site-page-gutter)
+    ),
+    var(--site-content-width)
+  );
+
+  max-width: var(--site-content-width);
+
+  margin-left: auto;
+  margin-right: auto;
+
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+.politician-hero-eyebrow {
+  display: inline-block;
+
+  color: #ffb45e;
+
+  font-weight: 800;
+  font-size: 14px;
+
+  letter-spacing: 3px;
+  line-height: 1.6;
+
+  margin-bottom: 25px;
+}
+
+.politician-hero-content h1 {
+  color: #ffffff;
+
+  font-size: clamp(48px, 6vw, 82px);
+  line-height: 1.08;
+  font-weight: 800;
+
+  margin: 0 0 25px;
+
+  max-width: 750px;
+  overflow-wrap: break-word;
+}
+
+.politician-hero-content p {
+  color: rgba(255, 255, 255, 0.95);
+
+  font-size: clamp(16px, 1.6vw, 21px);
+  line-height: 1.8;
+
+  max-width: 590px;
+
+  margin: 0 0 35px;
+}
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
+
+.politician-hero-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.politician-primary-button,
+.politician-secondary-button {
+  min-height: 52px;
+  padding: 14px 28px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  font-weight: 700;
+
+  border-radius: 6px;
+
+  transition: all 0.3s ease;
+}
+
+.politician-primary-button {
+  background: #ff9933;
+  color: #17243a;
+  border: 2px solid #ff9933;
+}
+
+.politician-primary-button:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #17243a;
+  transform: translateY(-3px);
+}
+
+.politician-secondary-button {
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  background: transparent;
+}
+
+.politician-secondary-button:hover {
+  background: #ffffff;
+  color: #17243a;
+  transform: translateY(-3px);
+}
+
+/* =========================================================
+   TRICOLOR BOTTOM BORDER
+========================================================= */
+
+.politician-hero-bottom-line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 6px;
+
+  display: flex;
+  z-index: 3;
+}
+
+.saffron-line {
+  flex: 1;
+  background: #ff9933;
+}
+
+.white-line {
+  flex: 1;
+  background: #ffffff;
+}
+
+.green-line {
+  flex: 1;
+  background: #138808;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1500px) {
+  .politician-hero {
+    min-height: 740px;
+  }
+
+  .politician-hero-image {
+    object-position: 68% 42%;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+  .politician-hero {
+    min-height: 600px;
+    padding: 70px 0;
+  }
+
+  .politician-hero-image {
+    object-position: 68% center;
+  }
+
+  .politician-hero-content h1 {
+    font-size: clamp(42px, 6vw, 64px);
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .politician-hero {
+    min-height: 650px;
+    padding: 65px 0;
+    align-items: center;
+  }
+
+  .politician-hero-image {
+    object-position: 72% center;
+  }
+
+  .politician-hero-overlay {
+    background: linear-gradient(
+      90deg,
+      rgba(15, 27, 45, 0.94) 0%,
+      rgba(15, 27, 45, 0.78) 55%,
+      rgba(15, 27, 45, 0.45) 100%
+    );
+  }
+
+  .politician-hero-content {
+    width: calc(
+      100% -
+      var(--site-page-gutter) -
+      var(--site-page-gutter)
+    );
+  }
+
+  .politician-hero-content h1 {
+    font-size: clamp(38px, 9vw, 54px);
+  }
+
+  .politician-hero-content p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .politician-hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+  }
+
+  .politician-hero-buttons {
+    gap: 12px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .politician-hero {
+    min-height: 600px;
+    padding: 55px 0;
+  }
+
+  .politician-hero-content h1 {
+    font-size: 39px;
+  }
+
+  .politician-hero-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .politician-primary-button,
+  .politician-secondary-button {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .politician-primary-button,
+  .politician-secondary-button {
+    transition: none;
+  }
+}

@@ -1,0 +1,31 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="white"/>
+  
+  <!-- Lotus petals -->
+  <g fill="#FF9933" stroke="#E87500" stroke-width="1.5">
+    <ellipse cx="100" cy="67" rx="15" ry="38"/>
+    <ellipse cx="73" cy="79" rx="15" ry="35" transform="rotate(-35 73 79)"/>
+    <ellipse cx="127" cy="79" rx="15" ry="35" transform="rotate(35 127 79)"/>
+    <ellipse cx="61" cy="106" rx="14" ry="31" transform="rotate(-55 61 106)"/>
+    <ellipse cx="139" cy="106" rx="14" ry="31" transform="rotate(55 139 106)"/>
+  </g>
+
+  <!-- Lower petals -->
+  <g fill="#FF9933" stroke="#E87500" stroke-width="1.5">
+    <ellipse cx="82" cy="113" rx="13" ry="29" transform="rotate(-25 82 113)"/>
+    <ellipse cx="118" cy="113" rx="13" ry="29" transform="rotate(25 118 113)"/>
+  </g>
+
+  <!-- Green stem -->
+  <path d="M100 105 L100 160" stroke="#138808" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Green leaves -->
+  <path d="M100 145 Q65 120 50 143 Q70 165 100 145" fill="#138808"/>
+  <path d="M100 145 Q135 120 150 143 Q130 165 100 145" fill="#138808"/>
+
+  <!-- White center details -->
+  <path d="M100 35 L100 95" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <path d="M78 53 L96 91" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <path d="M122 53 L104 91" stroke="white" stroke-width="2" stroke-linecap="round"/>
+</svg>

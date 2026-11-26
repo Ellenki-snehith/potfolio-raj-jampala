@@ -1,0 +1,20 @@
+/* Scoped styling: only the custom page template creator. */
+.builder-row,.builder-section-row{border:1px solid #dce5ea;border-radius:12px;background:#fafcfd;padding:12px;display:grid;gap:11px;margin:12px 0}
+.builder-row label,.builder-section-row label{display:grid;gap:4px}
+.builder-actions,.builder-checks{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.builder-actions button{width:auto;display:inline-flex;gap:6px;align-items:center}
+.builder-help{color:#6b7e8d;font-size:13px;line-height:1.6}
+
+/* Per-listing custom field builder in Organization Admin */
+.custom-entry-builder{min-width:0;margin:14px 0;border:1px solid #dce5ea;border-radius:12px;padding:14px}
+.custom-entry-builder legend{font-weight:750;color:#183351;padding:0 8px}
+.custom-entry-field{background:#f7fbfe;margin:14px 0}
+.custom-entry-field .builder-field-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.custom-entry-field .builder-field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.custom-entry-field .builder-field-grid label,.custom-entry-field>label{min-width:0;display:grid;gap:6px}
+.custom-entry-field input:not([type=checkbox]),.custom-entry-field textarea,.custom-entry-field select{width:100%;min-width:0;box-sizing:border-box}
+.custom-entry-field .builder-inline-check{display:flex;align-items:center;gap:10px;padding:8px 0}
+.custom-entry-field .builder-inline-check input{width:auto}
+.custom-add-field{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:auto;max-width:100%;padding:11px 16px;border-radius:10px;background:#103d58;color:#fff;border:0;font-weight:700;cursor:pointer}
+.custom-add-field:disabled{opacity:.55;cursor:default}
+@media(max-width:640px){.custom-entry-field .builder-field-grid{grid-template-columns:1fr}.custom-entry-builder{padding:10px}}

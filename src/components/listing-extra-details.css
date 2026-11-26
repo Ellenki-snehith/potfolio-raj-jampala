@@ -1,0 +1,47 @@
+/* Each custom field is a standalone content section, just like Description. */
+.listing-extra-section {
+  margin: 24px 0;
+  padding: 23px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  color: #142c3e;
+}
+
+.listing-extra-section h2 {
+  font-size: clamp(19px, 2vw, 23px);
+  line-height: 1.3;
+  margin: 0 0 14px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.listing-extra-value {
+  margin: 0;
+  color: #334155;
+  font-size: 15px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* The compact badges on listing cards retain their original appearance. */
+.listing-extra-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.listing-extra-badges span {
+  font-size: 12px;
+  padding: 5px 9px;
+  border: 1px solid #d8e4ec;
+  border-radius: 8px;
+  background: #f5f9fc;
+  color: #315267;
+}
+
+@media (max-width: 600px) {
+  .listing-extra-section { padding: 16px; }
+}
