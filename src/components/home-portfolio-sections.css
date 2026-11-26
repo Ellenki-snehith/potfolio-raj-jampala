@@ -1114,3 +1114,187 @@
     grid-template-columns: 1fr;
   }
 }
+/* =========================================================
+   HOME PORTFOLIO - FINAL SHARED WEBSITE ALIGNMENT
+   Matches About, Contact, Gallery and Other Pages
+========================================================= */
+
+/* Common website width and margins */
+:root {
+  --site-content-width: 1600px;
+  --site-page-gutter: clamp(16px, 2vw, 32px);
+}
+
+/* Keep all section backgrounds full width */
+.home-portfolio-sections {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  box-sizing: border-box;
+}
+
+/* Remove old horizontal section padding */
+.home-stats,
+.home-quote-section,
+.home-activities-section,
+.home-focus-section,
+.home-journey-section {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Common alignment for all Home section containers */
+.home-stats-heading,
+.home-stats-inner,
+.home-quote-banner,
+.home-section-heading,
+.home-activities-grid,
+.home-focus-heading,
+.home-focus-grid,
+.home-journey-section {
+  width: min(
+    calc(100% - 2 * var(--site-page-gutter)),
+    var(--site-content-width)
+  );
+
+  max-width: var(--site-content-width);
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.home-stats-inner {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+/* =========================================================
+   QUOTE BANNER
+========================================================= */
+
+.home-quote-banner {
+  overflow: hidden;
+}
+
+.home-quote-content {
+  width: 100%;
+  max-width: 1050px;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   RECENT ACTIVITIES
+========================================================= */
+
+.home-activities-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* =========================================================
+   FOCUS AREAS
+========================================================= */
+
+.home-focus-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* =========================================================
+   JOURNEY TIMELINE
+========================================================= */
+
+.home-journey-section {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(35px, 6vw, 100px);
+}
+
+/* =========================================================
+   FIX INVALID TRANSITION DECLARATIONS
+========================================================= */
+
+.home-outline-link {
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.home-focus-icon {
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+/* =========================================================
+   TABLET RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+  .home-stats-inner {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .home-activities-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-focus-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+  .home-stats-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-activities-grid,
+  .home-focus-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-journey-section {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .home-quote-banner {
+    min-height: 430px;
+  }
+
+  .home-quote-content {
+    padding: 45px 7%;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+  .home-stats-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .home-outline-link,
+  .home-focus-icon {
+    transition: none !important;
+  }
+}

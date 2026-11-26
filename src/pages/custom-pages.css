@@ -1,16 +1,15 @@
+
 /* =========================================================
-   SHARED WEBSITE WIDTH AND BJP THEME
+   CUSTOM PAGES - BJP THEME AND SHARED WEBSITE ALIGNMENT
+   Desktop: 7% left + 86% content + 7% right
+   Mobile: 5% left + 90% content + 5% right
 ========================================================= */
 
 :root {
-  --site-content-width: 1450px;
-  --site-page-gutter: clamp(22px, 5vw, 76px);
-
   --custom-navy: #17243a;
   --custom-orange: #ff9933;
   --custom-green: #138808;
   --custom-white: #ffffff;
-
   --custom-text: #17243a;
   --custom-muted: #64748b;
   --custom-border: #e8e3dc;
@@ -19,32 +18,27 @@
 
 /* =========================================================
    MAIN PAGE WRAPPER
-   Same width and horizontal spacing as the website container
 ========================================================= */
 
 .custom-page-wrap {
-  width: min(
-    calc(
-      100% -
-      var(--site-page-gutter) -
-      var(--site-page-gutter)
-    ),
-    var(--site-content-width)
-  );
-
-  max-width: var(--site-content-width);
+  width: var(--site-content-width, 86%);
+  max-width: none;
   margin-left: auto;
   margin-right: auto;
-
   padding: 30px 0 72px;
   color: var(--custom-text);
   box-sizing: border-box;
 }
 
+.custom-page-wrap,
 .custom-page-wrap *,
 .custom-page-wrap *::before,
 .custom-page-wrap *::after {
   box-sizing: border-box;
+}
+
+.custom-page-wrap > * {
+  max-width: 100%;
 }
 
 /* =========================================================
@@ -53,35 +47,29 @@
 
 .custom-hero {
   position: relative;
+  width: 100%;
+  max-width: 100%;
   overflow: hidden;
   border-radius: 24px;
-
   padding: 52px clamp(22px, 5vw, 64px);
-
-  background:
-    linear-gradient(
-      120deg,
-      #17243a 0%,
-      #253d59 75%,
-      #e98227 100%
-    );
-
   color: #ffffff;
+  background: linear-gradient(
+    120deg,
+    #17243a 0%,
+    #253d59 75%,
+    #e98227 100%
+  );
 }
 
 .custom-hero::after {
   content: "";
   position: absolute;
-
   width: 180px;
   height: 180px;
-
   right: -45px;
   bottom: -65px;
-
   border-radius: 50%;
   border: 25px solid rgba(255, 255, 255, 0.08);
-
   pointer-events: none;
 }
 
@@ -118,6 +106,8 @@
   gap: 20px;
   margin: 25px 0;
   position: relative;
+  width: 100%;
+  max-width: 100%;
 }
 
 .custom-toolbar input {
@@ -125,23 +115,17 @@
   max-width: 450px;
   min-width: 0;
   height: 58px;
-
   padding: 12px 20px 12px 52px;
-
   border: 1.5px solid var(--custom-orange);
   border-radius: 18px;
-
   background-color: #ffffff;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%23f58232' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-4-4'/%3E%3C/svg%3E");
-
   background-repeat: no-repeat;
   background-position: 18px center;
   background-size: 21px;
-
   color: var(--custom-text);
   font-size: 17px;
   font-family: inherit;
-
   outline: none;
   transition: all 0.25s ease;
 }
@@ -166,6 +150,8 @@
 
 .custom-categories {
   display: flex;
+  width: 100%;
+  max-width: 100%;
   gap: 10px;
   flex-wrap: wrap;
   margin: 12px 0 23px;
@@ -175,10 +161,8 @@
   border: 1px solid #ead8c5;
   background: #ffffff;
   color: var(--custom-navy);
-
   padding: 10px 17px;
   border-radius: 24px;
-
   cursor: pointer;
   font-weight: 600;
   transition: 0.2s;
@@ -196,31 +180,32 @@
 }
 
 /* =========================================================
-   SERVICES GRID
+   SERVICE LISTING GRID
+   Four cards on desktop, two on tablet, one on mobile
 ========================================================= */
 
-.custom-grid {
+.custom-grid,
+.custom-grid.compact {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 22px;
 }
 
-/* =========================================================
-   SERVICE CARDS
-========================================================= */
-
-.custom-card {
+.custom-card,
+.custom-grid.compact .custom-card {
   display: flex;
   flex-direction: column;
-
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
   background: #ffffff;
   border: 1px solid #eee3d7;
-  border-radius: 20px;
-
-  overflow: hidden;
-
+  border-radius: 17px;
   box-shadow: 0 8px 24px rgba(23, 36, 58, 0.05);
-
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
@@ -235,20 +220,21 @@
 
 /* Card image */
 
-.custom-card-picture {
-  aspect-ratio: 16 / 10;
-
-  background: #fff2e3;
-
+.custom-card-picture,
+.custom-grid.compact .custom-card-picture {
   display: flex;
+  flex: 0 0 auto;
+  width: 100%;
+  aspect-ratio: 16 / 10;
   align-items: center;
   justify-content: center;
-
-  color: #c66b19;
   overflow: hidden;
+  background: #fff2e3;
+  color: #c66b19;
 }
 
 .custom-card-picture img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -259,97 +245,42 @@
   transform: scale(1.04);
 }
 
-/* Card content */
+/* Show only the service title below the image */
 
 .custom-card > div {
-  padding: 22px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-
-  flex: 1;
-}
-
-.custom-card small,
-.custom-meta span {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #7b8795;
+  display: block;
+  flex: 0 0 auto;
+  padding: 16px 18px;
 }
 
 .custom-card h2 {
-  font-size: 21px;
-  line-height: 1.35;
   margin: 0;
   color: var(--custom-navy);
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 750;
 }
 
-.custom-card p {
-  color: #657385;
-  line-height: 1.7;
+/* Hide descriptions, admin fields and separate details link */
 
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-
-  overflow: hidden;
-  margin: 0;
+.custom-card > div > p,
+.custom-card .custom-card-facts,
+.custom-card .custom-link,
+.custom-card small,
+.custom-card .custom-meta {
+  display: none !important;
 }
+
+/* Card facts */
 
 .custom-card strong {
   color: #e98227;
 }
 
-/* View details link */
-
-.custom-link {
-  margin-top: auto;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-
-  font-weight: 750;
-  color: #e98227;
-  text-decoration: none;
-
-  transition: gap 0.2s ease;
-}
-
-.custom-link:hover {
-  gap: 12px;
-  color: var(--custom-navy);
-}
-
-/* =========================================================
-   COMPACT GRID
-========================================================= */
-
-.custom-grid.compact {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.custom-grid.compact .custom-card {
-  flex-direction: row;
-  min-height: 180px;
-}
-
-.custom-grid.compact .custom-card-picture {
-  flex: 0 0 40%;
-  aspect-ratio: auto;
-}
-
-/* =========================================================
-   CARD FACTS
-========================================================= */
-
 .custom-card-facts {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-
   font-size: 13px;
   color: #476678;
 }
@@ -361,19 +292,33 @@
   padding: 4px 9px;
 }
 
-/* =========================================================
-   EMPTY SEARCH RESULT
-========================================================= */
+/* View details link */
+
+.custom-link {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 750;
+  color: #e98227;
+  text-decoration: none;
+  transition: gap 0.2s ease;
+}
+
+.custom-link:hover {
+  gap: 12px;
+  color: var(--custom-navy);
+}
+
+/* Empty search result */
 
 .custom-empty {
   width: 100%;
   padding: 60px 24px;
   text-align: center;
-
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid #eadfce;
   border-radius: 22px;
-
   color: var(--custom-navy);
 }
 
@@ -396,9 +341,7 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-
   margin: 0 0 22px;
-
   color: #e98227;
   text-decoration: none;
   font-weight: 700;
@@ -441,9 +384,14 @@
   flex-wrap: wrap;
 }
 
-/* =========================================================
-   DETAIL PAGE BUTTONS
-========================================================= */
+.custom-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #7b8795;
+}
+
+/* Detail page buttons */
 
 .custom-heading button,
 .custom-inquiry-aside button,
@@ -451,17 +399,13 @@
   background: var(--custom-orange);
   border: 0;
   color: #ffffff;
-
   border-radius: 11px;
   padding: 13px 18px;
-
   cursor: pointer;
-
   display: inline-flex;
   gap: 9px;
   align-items: center;
   justify-content: center;
-
   font-weight: 700;
   transition: 0.2s;
 }
@@ -474,34 +418,36 @@
 }
 
 /* =========================================================
-   DETAIL PAGE LAYOUT
+   DETAIL PAGE LAYOUT AND MAIN IMAGE
 ========================================================= */
 
 .custom-detail-grid {
   display: grid;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   grid-template-columns: minmax(0, 2fr) minmax(250px, 1fr);
-
   align-items: start;
   gap: 32px;
 }
 
-/* Main image */
+.custom-detail-grid.wide {
+  grid-template-columns: 1fr;
+}
 
 .custom-main-img {
   border-radius: 24px;
   background: #fff7ed;
-
   min-height: 350px;
   aspect-ratio: 16 / 10;
-
   overflow: hidden;
-
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .custom-main-img img {
+  display: block;
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -514,7 +460,6 @@
 .custom-thumbs {
   display: flex;
   gap: 12px;
-
   overflow-x: auto;
   margin-top: 16px;
   padding-bottom: 4px;
@@ -523,13 +468,10 @@
 .custom-thumbs button {
   flex: 0 0 92px;
   height: 72px;
-
   padding: 0;
   overflow: hidden;
-
   border-radius: 10px;
   border: 3px solid transparent;
-
   cursor: pointer;
   background: #fff2e3;
 }
@@ -541,10 +483,8 @@
 .custom-thumbs img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
   border-radius: 8px;
-
   border: 2px solid #e5e7eb;
   transition: 0.25s ease;
 }
@@ -555,17 +495,18 @@
 }
 
 /* =========================================================
-   CONTENT SECTIONS
+   DETAIL CONTENT SECTIONS
 ========================================================= */
 
 .custom-content-section {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   margin-top: 28px;
   padding: 32px;
-
   background: #ffffff;
   border: 1px solid var(--custom-border);
   border-radius: 22px;
-
   box-shadow: 0 5px 20px rgba(23, 36, 58, 0.035);
 }
 
@@ -593,7 +534,6 @@
   font-size: 16px;
   line-height: 1.85;
   color: #5b6b80;
-
   margin-bottom: 14px;
   white-space: pre-line;
   overflow-wrap: anywhere;
@@ -612,32 +552,28 @@
   margin-bottom: 10px;
 }
 
-/* =========================================================
-   SPECIFICATIONS
-========================================================= */
+/* Specifications */
 
 .custom-specifications {
   display: grid;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-
   margin-top: 40px;
   padding: 28px;
-
   background: #ffffff;
   border: 1px solid var(--custom-border);
   border-radius: 24px;
-
   box-shadow: 0 8px 25px rgba(23, 36, 58, 0.04);
 }
 
 .custom-specifications h2 {
   grid-column: 1 / -1;
-
   font-size: 28px;
   line-height: 1.3;
   margin-bottom: 24px;
-
   color: var(--custom-navy);
   font-weight: 700;
 }
@@ -664,9 +600,7 @@
   padding: 24px;
 }
 
-/* =========================================================
-   VIDEOS
-========================================================= */
+/* Videos */
 
 .custom-videos {
   display: grid;
@@ -687,11 +621,8 @@
   background: #fffaf5;
   border: 1px solid #f0dfcc;
   border-radius: 22px;
-
   padding: 28px;
-
   box-shadow: 0 8px 25px rgba(23, 36, 58, 0.04);
-
   position: sticky;
   top: 18px;
 }
@@ -710,12 +641,6 @@
   font-size: 16px;
 }
 
-/* Wide detail layout */
-
-.custom-detail-grid.wide {
-  grid-template-columns: 1fr;
-}
-
 .custom-detail-grid.wide .custom-inquiry-aside {
   position: static;
 }
@@ -728,11 +653,8 @@
   position: fixed;
   inset: 0;
   z-index: 1000;
-
   background: rgba(23, 36, 58, 0.72);
-
   padding: 20px;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -740,16 +662,12 @@
 
 .custom-modal {
   position: relative;
-
   width: min(620px, 100%);
   max-height: 92vh;
-
   overflow-y: auto;
-
   background: #ffffff;
   border-radius: 21px;
   padding: 28px;
-
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
 }
 
@@ -757,10 +675,8 @@
   position: absolute;
   right: 19px;
   top: 12px;
-
   border: 0;
   background: transparent;
-
   font-size: 30px;
   cursor: pointer;
   color: var(--custom-navy);
@@ -775,7 +691,6 @@
 .custom-modal label {
   display: grid;
   gap: 5px;
-
   font-weight: 600;
   font-size: 13px;
   color: var(--custom-navy);
@@ -787,13 +702,11 @@
 
 .custom-modal input,
 .custom-modal textarea {
+  width: 100%;
   font: inherit;
-
   padding: 12px;
-
   border: 1px solid #e1d5c8;
   border-radius: 10px;
-
   min-width: 0;
   outline: none;
 }
@@ -822,7 +735,7 @@
 
 /* =========================================================
    ADMIN BUILDER SUPPORT
-   Keep these styles for existing Admin functionality
+   Preserve existing admin functionality
 ========================================================= */
 
 .builder-help {
@@ -835,13 +748,10 @@
 .builder-section-row {
   padding: 12px;
   margin: 10px 0;
-
   border: 1px solid #e1d5c8;
   border-radius: 13px;
-
   display: grid;
   gap: 10px;
-
   background: #ffffff;
 }
 
@@ -855,7 +765,6 @@
 
 .builder-actions button {
   width: auto;
-
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -896,9 +805,7 @@
   overflow-wrap: anywhere;
 }
 
-/* =========================================================
-   GENERAL HOVER EFFECTS
-========================================================= */
+/* General hover effects */
 
 .custom-page-wrap button,
 .custom-page-wrap .custom-link {
@@ -913,6 +820,14 @@
 /* =========================================================
    TABLET RESPONSIVE
 ========================================================= */
+
+@media (max-width: 1100px) {
+  .custom-grid,
+  .custom-grid.compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
 
 @media (max-width: 900px) {
   .custom-detail-grid {
@@ -940,27 +855,15 @@
   }
 }
 
-@media (max-width: 800px) {
-  .custom-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .custom-grid.compact {
-    grid-template-columns: 1fr;
-  }
-
-  .custom-toolbar {
-    gap: 15px;
-  }
-
-  .custom-toolbar input {
-    max-width: none;
-  }
-}
-
 /* =========================================================
    MOBILE RESPONSIVE
 ========================================================= */
+
+@media (max-width: 768px) {
+  .custom-page-wrap {
+    width: var(--site-content-width, 90%);
+  }
+}
 
 @media (max-width: 600px) {
   .custom-page-wrap {
@@ -971,6 +874,20 @@
   .custom-hero {
     border-radius: 19px;
     padding: 35px 22px;
+  }
+
+  .custom-grid,
+  .custom-grid.compact {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 17px;
+  }
+
+  .custom-card > div {
+    padding: 15px 17px;
+  }
+
+  .custom-card h2 {
+    font-size: 19px;
   }
 
   .custom-specifications {
@@ -1009,11 +926,6 @@
     border-radius: 18px;
   }
 
-  .custom-grid {
-    grid-template-columns: 1fr;
-    gap: 17px;
-  }
-
   .custom-toolbar {
     flex-direction: column;
     align-items: stretch;
@@ -1025,14 +937,6 @@
     min-width: 0;
     height: 54px;
     font-size: 16px;
-  }
-
-  .custom-card > div {
-    padding: 19px;
-  }
-
-  .custom-card h2 {
-    font-size: 19px;
   }
 
   .custom-modal {
@@ -1053,13 +957,22 @@
   .custom-videos {
     grid-template-columns: 1fr;
   }
+}
 
-  .custom-grid.compact .custom-card {
-    flex-direction: column;
+/* Small mobile */
+
+@media (max-width: 400px) {
+  .custom-hero {
+    padding: 30px 18px;
   }
 
-  .custom-grid.compact .custom-card-picture {
-    aspect-ratio: 16 / 10;
+  .custom-content-section,
+  .custom-inquiry-aside {
+    padding: 18px;
+  }
+
+  .custom-card h2 {
+    font-size: 18px;
   }
 }
 
@@ -1068,83 +981,10 @@
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+  .custom-page-wrap button,
   .custom-card,
   .custom-card-picture img,
   .custom-link {
-    transition: none;
-  }
-}
-/* =========================================================
-   FINAL LEFT & RIGHT MARGIN ALIGNMENT
-   Same alignment as Contact Page and other website sections
-========================================================= */
-
-:root {
-  --site-content-width: 1450px;
-  --site-page-gutter: clamp(22px, 5vw, 76px);
-}
-
-/* Main custom pages container */
-
-.custom-page-wrap {
-  width: calc(100% - (2 * var(--site-page-gutter)));
-  max-width: var(--site-content-width);
-
-  margin-left: auto;
-  margin-right: auto;
-
-  padding: 30px 0 72px;
-
-  box-sizing: border-box;
-}
-
-/* Keep all custom page sections within the wrapper */
-
-.custom-page-wrap > *,
-.custom-hero,
-.custom-toolbar,
-.custom-categories,
-.custom-grid,
-.custom-detail-grid,
-.custom-specifications,
-.custom-content-section {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-/* Listing grid */
-
-.custom-grid {
-  width: 100%;
-}
-
-/* Detail page */
-
-.custom-detail-grid {
-  width: 100%;
-}
-
-/* Full-width content sections */
-
-.custom-content-section,
-.custom-specifications {
-  width: 100%;
-}
-
-/* Tablet */
-
-@media (max-width: 800px) {
-  .custom-page-wrap {
-    width: calc(100% - (2 * var(--site-page-gutter)));
-  }
-}
-
-/* Mobile */
-
-@media (max-width: 600px) {
-  .custom-page-wrap {
-    width: calc(100% - (2 * var(--site-page-gutter)));
-    padding-top: 20px;
-    padding-bottom: 55px;
+    transition: none !important;
   }
 }

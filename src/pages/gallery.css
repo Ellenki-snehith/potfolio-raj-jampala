@@ -24,27 +24,39 @@
    Cream + Saffron + Navy
    Backend functionality remains unchanged
 ========================================================= */
+/* =========================================================
+   BJP / PUBLIC SERVICE GALLERY THEME
+   Responsive percentage-based alignment
+========================================================= */
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
 
 .site-standalone-gallery,
 .site-standalone-gallery * {
   box-sizing: border-box;
 }
 
-/* MAIN PAGE */
-
 .site-standalone-gallery {
-  background: #fff5e8;
+  width: 100%;
   min-height: 100vh;
+  background: #fff5e8;
   color: #17243a;
   font-family: inherit;
+  overflow-x: clip;
 }
 
 /* =========================================================
    HERO SECTION
+   12% LEFT + 76% CONTENT + 12% RIGHT
 ========================================================= */
 
 .site-standalone-gallery-hero {
-  padding: 100px 7% 85px;
+  width: 100%;
+
+  padding: 100px var(--site-page-gutter) 85px;
+
   background:
     radial-gradient(
       circle at top right,
@@ -57,6 +69,7 @@
       #fffaf3 55%,
       #ffffff 100%
     );
+
   border-bottom: 1px solid rgba(23, 36, 58, 0.08);
 }
 
@@ -64,11 +77,14 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+
   color: #d97722;
+
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 3px;
   text-transform: uppercase;
+
   margin-bottom: 22px;
 }
 
@@ -78,30 +94,40 @@
 
 .site-standalone-gallery-hero h1 {
   color: #17243a;
+
   font-size: clamp(38px, 5vw, 68px);
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -1.8px;
+
   margin: 0;
-  max-width: 1100px;
+  max-width: 100%;
 }
 
 .site-standalone-gallery-hero p {
   color: #68758a;
+
   font-size: 17px;
   line-height: 1.9;
+
   margin: 24px 0 0;
-  max-width: 950px;
+  max-width: 100%;
 }
 
 /* =========================================================
    CONTENT AREA
+   USES GLOBAL WEBSITE WIDTH
 ========================================================= */
 
 .site-standalone-gallery-content {
-  width: min(100% - 80px, 1450px);
-  margin: 0 auto;
+  width: var(--site-content-width);
+
+  margin-left: auto;
+  margin-right: auto;
+
   padding: 75px 0 100px;
+
+  box-sizing: border-box;
 }
 
 /* =========================================================
@@ -109,6 +135,7 @@
 ========================================================= */
 
 .site-standalone-gallery-field {
+  width: 100%;
   margin-bottom: 50px;
 }
 
@@ -128,17 +155,22 @@
 ========================================================= */
 
 .site-standalone-gallery-tools {
+  width: 100%;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   gap: 25px;
   margin-bottom: 55px;
   padding-bottom: 25px;
+
   border-bottom: 1px solid rgba(23, 36, 58, 0.12);
 }
 
 .site-standalone-gallery-tools h2 {
   margin: 0;
+
   color: #17243a;
   font-size: 30px;
   font-weight: 800;
@@ -157,13 +189,18 @@
 
 .site-standalone-gallery-filters button {
   border: 1px solid rgba(23, 36, 58, 0.15);
+
   background: #ffffff;
   color: #17243a;
+
   padding: 13px 22px;
   border-radius: 12px;
+
   font-size: 14px;
   font-weight: 700;
+
   cursor: pointer;
+
   transition:
     background 0.25s ease,
     color 0.25s ease,
@@ -182,6 +219,7 @@
   background: #ff9933;
   border-color: #ff9933;
   color: #ffffff;
+
   box-shadow: 0 7px 20px rgba(255, 153, 51, 0.22);
 }
 
@@ -189,17 +227,14 @@
    GALLERY SECTION HEADING
 ========================================================= */
 
-.site-standalone-gallery-content h2 {
-  color: #17243a;
-}
-
+.site-standalone-gallery-content h2,
 .site-standalone-gallery-content h3 {
   color: #17243a;
 }
 
 /* =========================================================
    MEDIA GALLERY GRID
-   Works with existing MediaGalleryGrid component
+   EXISTING MEDIAGALLERYGRID COMPONENT
 ========================================================= */
 
 .site-standalone-gallery-content > div:not(
@@ -207,8 +242,6 @@
 ) {
   color: #17243a;
 }
-
-/* Gallery heading area inside MediaGalleryGrid */
 
 .site-standalone-gallery-content [class*="gallery"] {
   color: #17243a;
@@ -219,28 +252,35 @@
 ========================================================= */
 
 .site-standalone-gallery-empty {
+  width: 100%;
+
   background: #ffffff;
+
   border: 1px dashed rgba(255, 153, 51, 0.5);
   border-radius: 22px;
+
   padding: 60px 30px;
+
   text-align: center;
+
   color: #64748b;
   font-size: 16px;
   line-height: 1.8;
 }
 
 /* =========================================================
-   RESPONSIVE
+   TABLET RESPONSIVE
 ========================================================= */
 
 @media (max-width: 1000px) {
   .site-standalone-gallery-hero {
-    padding: 75px 5% 65px;
+    padding-top: 75px;
+    padding-bottom: 65px;
   }
 
   .site-standalone-gallery-content {
-    width: min(100% - 50px, 1450px);
-    padding: 60px 0 80px;
+    padding-top: 60px;
+    padding-bottom: 80px;
   }
 
   .site-standalone-gallery-tools {
@@ -253,9 +293,14 @@
   }
 }
 
-@media (max-width: 600px) {
+/* =========================================================
+   MOBILE RESPONSIVE
+   USES GLOBAL 5% SIDE SPACING
+========================================================= */
+
+@media (max-width: 768px) {
   .site-standalone-gallery-hero {
-    padding: 55px 24px 50px;
+    padding: 55px var(--site-page-gutter) 50px;
   }
 
   .site-standalone-gallery-hero > span {
@@ -264,7 +309,7 @@
   }
 
   .site-standalone-gallery-hero h1 {
-    font-size: 36px;
+    font-size: clamp(32px, 7vw, 36px);
     letter-spacing: -1px;
   }
 
@@ -274,7 +319,8 @@
   }
 
   .site-standalone-gallery-content {
-    width: calc(100% - 32px);
+    width: var(--site-content-width);
+
     padding: 40px 0 65px;
   }
 
@@ -306,11 +352,30 @@
 }
 
 /* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+  .site-standalone-gallery-hero h1 {
+    font-size: 30px;
+  }
+
+  .site-standalone-gallery-tools h2 {
+    font-size: 21px;
+  }
+
+  .site-standalone-gallery-filters button {
+    padding: 10px 8px;
+    font-size: 11px;
+  }
+}
+
+/* =========================================================
    ACCESSIBILITY
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .site-standalone-gallery-filters button {
-    transition: none;
+    transition: none !important;
   }
 }

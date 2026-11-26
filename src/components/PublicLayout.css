@@ -12,9 +12,9 @@
   --bjp-cream: #fff5e8;
   --bjp-white: #ffffff;
 
-  --public-content-width: 1450px;
-  --public-side-gap: 24px;
-
+/* Match global website alignment */
+--public-content-width: var(--site-content-width, 86%);
+--public-side-gap: var(--site-page-gutter, 7%);
   --footer-bg: #eef4e8;
   --footer-heading: #17243a;
   --footer-text: #34465c;
@@ -210,8 +210,11 @@
 }
 
 .public-footer .footer-shell {
-  width: min(var(--public-content-width), calc(100% - 48px));
-  margin-inline: auto;
+  width: var(--public-content-width);
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 
 /* =========================================
@@ -431,6 +434,13 @@
   gap: 5px;
   min-width: 0;
   padding-top: 2px;
+}
+.public-footer .footer-shell {
+  width: var(--public-content-width);
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 
 .public-footer .footer-contact-text small {
@@ -804,4 +814,57 @@
     scroll-behavior: auto !important;
     transition: none !important;
   }
+}
+
+/* =========================================
+   ACTIVE NAVIGATION - UNDERLINE STYLE
+========================================= */
+
+/* Normal navigation links */
+.org-public-header .org-primary-nav a:not(.nav-cta):not(.contact-btn) {
+  position: relative;
+  background: transparent !important;
+  border-radius: 0 !important;
+  transition: color 0.25s ease;
+}
+
+/* Remove green background */
+.org-public-header .org-primary-nav a.active:not(.nav-cta):not(.contact-btn) {
+  background: transparent !important;
+  color: #138808 !important;
+}
+
+/* Underline */
+.org-public-header .org-primary-nav a:not(.nav-cta):not(.contact-btn)::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 4px;
+
+  height: 3px;
+  border-radius: 5px;
+  background: #138808;
+
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+}
+
+/* Show underline on active page */
+.org-public-header .org-primary-nav a.active:not(.nav-cta):not(.contact-btn)::after {
+  transform: scaleX(1);
+}
+
+/* Hover */
+.org-public-header .org-primary-nav a:hover:not(.nav-cta):not(.contact-btn) {
+  background: transparent !important;
+  color: #138808 !important;
+}
+
+/* Keep Contact Us button orange */
+.org-public-header .org-primary-nav a.nav-cta,
+.org-public-header .org-primary-nav a.contact-btn {
+  background: #ff9933 !important;
+  color: #17243a !important;
 }

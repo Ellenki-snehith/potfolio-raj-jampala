@@ -1,13 +1,13 @@
 
 /* =========================================
    DYNAMIC PARTY SERVICES - HOME PAGE
-   Clean and consolidated CSS
+   Consistent global content alignment
 ========================================= */
 
-/* Main section */
+/* Main section - background remains full width */
 .home-custom-services {
   width: 100%;
-  padding: 75px 5.5%;
+  padding: 75px 0;
   background: #FFFAF4;
   box-sizing: border-box;
 }
@@ -17,12 +17,23 @@
 }
 
 /* =========================================
+   SHARED CONTENT ALIGNMENT
+========================================= */
+
+.home-custom-services-heading,
+.home-custom-services-grid {
+  width: var(--site-content-width, 86%);
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================================
    SECTION HEADING
 ========================================= */
 
 .home-custom-services-heading {
-  max-width: 1320px;
-  margin: 0 auto 38px;
+  margin-bottom: 38px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -92,9 +103,6 @@
 ========================================= */
 
 .home-custom-services-grid {
-  width: 100%;
-  max-width: 1450px;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 25px;
@@ -225,7 +233,7 @@
 
 @media (max-width: 1000px) {
   .home-custom-services {
-    padding: 60px 4%;
+    padding: 60px 0;
   }
 
   .home-custom-services-grid {
@@ -254,11 +262,17 @@
 
 /* =========================================
    MOBILE RESPONSIVE
+   Uses global 90% content width
 ========================================= */
 
-@media (max-width: 650px) {
+@media (max-width: 768px) {
   .home-custom-services {
-    padding: 48px 5%;
+    padding: 48px 0;
+  }
+
+  .home-custom-services-heading,
+  .home-custom-services-grid {
+    width: var(--site-content-width, 90%);
   }
 
   .home-custom-services-heading {

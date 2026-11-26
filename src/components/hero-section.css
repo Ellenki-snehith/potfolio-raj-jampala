@@ -3,8 +3,8 @@
 ========================================================= */
 
 :root {
-  --site-content-width: 1450px;
-  --site-page-gutter: clamp(22px, 5vw, 76px);
+  --site-content-width: 1600px;
+  --site-page-gutter: clamp(16px, 2vw, 32px);
 }
 
 /* =========================================================
@@ -22,8 +22,6 @@
   align-items: center;
 
   overflow: hidden;
-
-  /* Vertical padding only; horizontal alignment is on content */
   padding: 80px 0;
 
   background: #17243a;
@@ -66,7 +64,7 @@
 
 /* =========================================================
    HERO TEXT CONTENT
-   SAME LEFT/RIGHT ALIGNMENT AS OTHER WEBSITE PAGES
+   SHARED WEBSITE ALIGNMENT
 ========================================================= */
 
 .politician-hero-content {

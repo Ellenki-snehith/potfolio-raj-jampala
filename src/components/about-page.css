@@ -892,3 +892,166 @@ section img {
   }
 
 }
+/* =========================================================
+   ABOUT PAGE - COMMON ROOT ALIGNMENT
+   Same as Home, Contact, Gallery and Custom Pages
+========================================================= */
+
+:root {
+  --site-content-width: 1600px;
+  --site-page-gutter: clamp(16px, 2vw, 32px);
+}
+
+/* Full-width section backgrounds */
+
+.about-page-hero,
+.about-profile-section,
+.about-introduction-section,
+.about-focus-section,
+.about-values-section,
+.about-community-section,
+.about-final-section {
+  width: 100%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box;
+}
+
+/* Shared content containers */
+
+.about-page-hero-content,
+.about-profile-container,
+.about-introduction-container,
+.about-focus-container,
+.about-values-container,
+.about-community-container {
+  width: calc(100% - (2 * var(--site-page-gutter)));
+  max-width: var(--site-content-width);
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box;
+}
+
+/* Hero content */
+
+.about-page-hero-content {
+  max-width: 1100px;
+}
+
+/* Profile layout */
+
+.about-profile-container {
+  grid-template-columns: minmax(280px, 400px) minmax(0, 1fr);
+  gap: clamp(30px, 4vw, 70px);
+}
+
+/* Profile image */
+
+.about-profile-image-wrapper {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Introduction cards */
+
+.about-introduction-content {
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Focus areas */
+
+.about-focus-grid {
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Values */
+
+.about-values-grid {
+  width: 100%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Community */
+
+.about-community-container {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Final content */
+
+.about-final-content {
+  width: calc(100% - (2 * var(--site-page-gutter)));
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Tablet */
+
+@media (max-width: 1024px) {
+  .about-profile-container {
+    grid-template-columns: minmax(250px, 330px) minmax(0, 1fr);
+    gap: 35px;
+  }
+
+  .about-introduction-content,
+  .about-focus-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-values-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .about-profile-container,
+  .about-introduction-container,
+  .about-focus-container,
+  .about-values-container,
+  .about-community-container,
+  .about-page-hero-content {
+    width: calc(100% - (2 * var(--site-page-gutter)));
+  }
+
+  .about-profile-container,
+  .about-community-container {
+    grid-template-columns: 1fr;
+  }
+
+  .about-introduction-content,
+  .about-focus-grid,
+  .about-values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-profile-content {
+    text-align: center;
+  }
+
+  .about-profile-tags {
+    justify-content: center;
+  }
+
+  .about-community-content {
+    text-align: center;
+  }
+}
+
+/* Small mobile */
+
+@media (max-width: 480px) {
+  .about-page-hero-content,
+  .about-profile-container,
+  .about-introduction-container,
+  .about-focus-container,
+  .about-values-container,
+  .about-community-container,
+  .about-final-content {
+    width: calc(100% - 32px);
+  }
+}

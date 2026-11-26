@@ -430,15 +430,10 @@ const CSS = String.raw`
   border-color: #f58232 !important;
   color: #ffffff !important;
 }
-  /* =========================================================
+ /* =========================================================
    FINAL SHARED WEBSITE ALIGNMENT
-   Contact | Home | Custom Pages | Admin-Created Sections
+   Uses global style.css variables
 ========================================================= */
-
-:root {
-  --site-content-width: 1450px;
-  --site-page-gutter: clamp(22px, 5vw, 76px);
-}
 
 /* Full-width section backgrounds */
 
@@ -453,7 +448,12 @@ const CSS = String.raw`
 /* Shared centered content container */
 
 .site-builder-inner {
-  width: calc(100% - (2 * var(--sb-page-gutter)));
+  width: calc(
+    100% -
+    var(--sb-page-gutter) -
+    var(--sb-page-gutter)
+  );
+
   max-width: var(--site-content-width);
 
   margin-left: auto;
@@ -465,7 +465,7 @@ const CSS = String.raw`
   box-sizing: border-box;
 }
 
-/* Keep section layouts inside the shared container */
+/* Keep all section content inside the container */
 
 .site-builder-copy,
 .site-builder-image,
@@ -492,7 +492,7 @@ const CSS = String.raw`
   max-width: 100%;
 }
 
-/* Dark highlight section retains its background */
+/* Highlight section */
 
 .site-builder-highlight {
   width: 100%;
@@ -502,7 +502,11 @@ const CSS = String.raw`
 
 @media (max-width: 960px) {
   .site-builder-inner {
-    width: calc(100% - (2 * var(--sb-page-gutter)));
+    width: calc(
+      100% -
+      var(--sb-page-gutter) -
+      var(--sb-page-gutter)
+    );
   }
 }
 
@@ -516,7 +520,12 @@ const CSS = String.raw`
 
   .site-builder-inner,
   .site-builder-has-image .site-builder-inner {
-    width: calc(100% - (2 * var(--sb-page-gutter)));
+    width: calc(
+      100% -
+      var(--sb-page-gutter) -
+      var(--sb-page-gutter)
+    );
+
     grid-template-columns: minmax(0, 1fr);
   }
 }
@@ -525,8 +534,13 @@ const CSS = String.raw`
 
 @media (max-width: 440px) {
   .site-builder-inner {
-    width: calc(100% - (2 * var(--sb-page-gutter)));
+    width: calc(
+      100% -
+      var(--sb-page-gutter) -
+      var(--sb-page-gutter)
+    );
   }
+}
 }
 `;
 

@@ -5,15 +5,29 @@
    GLOBAL DESIGN TOKENS
 ========================================= */
 
+/* =========================================
+   GLOBAL DESIGN TOKENS
+   RESPONSIVE WEBSITE WIDTH
+========================================= */
+
 :root {
   --site-background: #FFF5E8;
   --site-saffron: #FF9933;
   --site-navy: #17243A;
   --site-green: #138808;
-  --site-content-width: 1450px;
-  --site-page-gutter: clamp(22px, 5vw, 76px);
+
+  /* Desktop: 7% left + 86% content + 7% right */
+  --site-content-width: 86%;
+  --site-page-gutter: 7%;
 }
 
+/* Mobile layout */
+@media (max-width: 768px) {
+  :root {
+    --site-content-width: 90%;
+    --site-page-gutter: 5%;
+  }
+}
 * {
   box-sizing: border-box;
 }
@@ -2322,3 +2336,4 @@ main {
   min-width: 0;
   max-width: 100%;
 }
+
