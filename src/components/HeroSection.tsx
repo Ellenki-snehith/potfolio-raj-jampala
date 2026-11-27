@@ -519,7 +519,9 @@
 
 
 import './hero-section.css';
+
 import heroImage from '../assets/image.png';
+import mobileHeroImage from '../assets/mobile.png';
 
 interface HeroSectionProps {
   title?: string;
@@ -533,12 +535,23 @@ export default function HeroSection({
   return (
     <section className="politician-hero">
 
-      {/* HERO BACKGROUND IMAGE */}
-      <img
-        src={heroImage}
-        alt=""
-        className="politician-hero-image"
-      />
+      {/* RESPONSIVE HERO BACKGROUND IMAGE */}
+      <picture className="politician-hero-picture">
+
+        {/* Mobile image */}
+        <source
+          media="(max-width: 767px)"
+          srcSet={mobileHeroImage}
+        />
+
+        {/* Laptop and tablet image */}
+        <img
+          src={heroImage}
+          alt=""
+          className="politician-hero-image"
+        />
+
+      </picture>
 
       {/* DARK OVERLAY */}
       <div className="politician-hero-overlay"></div>
@@ -558,6 +571,7 @@ export default function HeroSection({
         </p>
 
         <div className="politician-hero-buttons">
+
           <a href="/about" className="politician-primary-button">
             Know More
           </a>
@@ -565,8 +579,8 @@ export default function HeroSection({
           <a href="/contact" className="politician-secondary-button">
             Contact
           </a>
-        </div>
 
+        </div>
       </div>
 
       {/* TRICOLOR BOTTOM LINE */}

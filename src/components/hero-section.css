@@ -332,3 +332,148 @@
     transition: none;
   }
 }
+/* =========================
+   MOBILE HERO IMPROVEMENT
+========================= */
+
+@media (max-width: 768px) {
+  .politician-hero {
+    min-height: 100vh;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Background image positioning */
+  .politician-hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 75% center;
+  }
+
+  /* Lighter, balanced overlay */
+  .politician-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(15, 20, 30, 0.92) 0%,
+      rgba(15, 20, 30, 0.78) 45%,
+      rgba(15, 20, 30, 0.40) 100%
+    );
+  }
+
+  /* Content spacing */
+  .politician-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 100px 24px 80px;
+    max-width: 100%;
+  }
+
+  /* Small heading */
+  .politician-hero-eyebrow {
+    font-size: 13px;
+    line-height: 1.8;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+  }
+
+  /* Main title */
+  .politician-hero-content h1 {
+    font-size: clamp(36px, 10vw, 52px);
+    line-height: 1.15;
+    margin-bottom: 24px;
+    word-break: normal;
+  }
+
+  /* Description */
+  .politician-hero-content p {
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 100%;
+    margin-bottom: 35px;
+  }
+
+  /* Buttons */
+  .politician-hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .politician-primary-button,
+  .politician-secondary-button {
+    width: 100%;
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-sizing: border-box;
+  }
+
+  /* Bottom tricolor */
+  .politician-hero-bottom-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+/* Smaller phones */
+@media (max-width: 480px) {
+  .politician-hero-image {
+    object-position: 68% center;
+  }
+
+  .politician-hero-content {
+    padding: 85px 20px 75px;
+  }
+
+  .politician-hero-content h1 {
+    font-size: 38px;
+  }
+
+  .politician-hero-content p {
+    font-size: 17px;
+  }
+}
+/* =========================================
+   MOBILE HERO - ADJUST PORTRAIT POSITION
+========================================= */
+
+@media screen and (max-width: 767px) {
+
+  .politician-hero-picture {
+    position: absolute !important;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .politician-hero-picture .politician-hero-image {
+    position: absolute !important;
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover !important;
+    object-position: center !important;
+
+    /* Move photo right and upward */
+    transform: translate(5%, -7%) scale(1.16) !important;
+    transform-origin: center center !important;
+  }
+
+}

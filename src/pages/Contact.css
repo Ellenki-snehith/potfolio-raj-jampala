@@ -4,10 +4,10 @@
    Shared left/right spacing: clamp(22px, 5vw, 76px)
 ========================================================= */
 
-:root {
+/* :root {
   --site-content-width: 1450px;
   --site-page-gutter: clamp(22px, 5vw, 76px);
-}
+} */
 
 .contact-page,
 .contact-page * {
@@ -636,4 +636,19 @@
   .contact-modern-submit {
     transition: none;
   }
+}
+/* =========================================
+   CONTACT PAGE - CONSISTENT HEADING FONTS
+   Inherit the website's global font family
+========================================= */
+
+.contact-page h1,
+.contact-page h2,
+.contact-page h3,
+.contact-page h4,
+.contact-page h5,
+.contact-page h6,
+.contact-page .contact-modern-title,
+.contact-page .contact-modern-profile-name {
+  font-family: inherit;
 }
